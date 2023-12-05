@@ -220,21 +220,21 @@ const movies = [
 */
 
 const findOldest = function (arrayDiFilm) {
-  let foundOldest = false
   let foundIndex = 0
-  while (!foundOldest) {
-    foundOldest = true
+  let foundOldest = true
+  while (foundOldest) {
+    foundOldest = false
     for (let i = 0; i < arrayDiFilm.length; i++) {
-      if (arrayDiFilm[0].year > arrayDiFilm[i].year) {
+      if (arrayDiFilm[foundIndex].Year > arrayDiFilm[i].Year) {
         foundIndex = i
-        foundOldest = false
+        foundOldest = true
       }
     }
   }
   return arrayDiFilm[foundIndex]
 }
 
-//console.log(findOldest(movies))
+// console.log(findOldest(movies))
 
 
 /* ESERCIZIO 10
@@ -261,22 +261,47 @@ const titoliFilm = function (arrayFilms) {
   Scrivi una funzione per ottenere dall'array fornito solamente i film usciti nel millennio corrente.
 */
 const film2k = function (arrayFilms) {
-  const ritorno = arrayFilms.filter((filmIterato) => parseInt(filmIterato.year) > 1999)
+  const ritorno = arrayFilms.filter((filmIterato) => filmIterato.Year > 1999)
   return ritorno
 }
 
-console.log(movies)
-
-console.log(film2k(movies))
+// console.log(film2k(movies))
 
 /* ESERCIZIO 13 (reduce)
   Scrivi una funzione per calcolare la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array fornito.
 */
 
+const sommaAnniConReduce = function (arrayDiFilm) {
+  const ritorno = arrayDiFilm.reduce((accumuloFinora, film) => { return accumuloFinora + parseInt(film.Year) }, 0) // Che fatica! Lo 0 alla fine è il valore iniziale da cui partirà accumuloFinora, nel primo argomento ci vanno due argomenti
+  // Il primo argomento è il nome che darò dentro l'esecuzione della funzione all'accumulo, il secondo nome è il nome che darò nell'esecuzione al valore dell'array che sto scorrendo (primo argomento)
+  // Il nel secondo argomento ci andrà l'esecuzione e il ritorno, un ritorno per ogni elemento dell'array su cui usiamo il reduce
+  return ritorno
+}
+
+//console.log(sommaAnniConReduce(movies))
+
 /* ESERCIZIO 14 (find)
   Scrivi una funzione per ottenere dall'array fornito uno specifico film (la funzione riceve un imdbID come parametro).
 */
 
+const trovaConimbID = function (arrayDiFilm, codice) {
+  const ritorno = arrayDiFilm.find((film) => film.imdbID === codice)
+  return ritorno
+}
+
+//Voglio ottenere Avengers Age of Ultron
+// console.log(trovaConimbID(movies, "tt2395427"))
+
 /* ESERCIZIO 15 (findIndex)
   Scrivi una funzione per ottenere dall'array fornito l'indice del primo film uscito nell'anno fornito come parametro.
 */
+
+const indexOfFilm = function (arrayDiFilm, annoParam) {
+  const ritorno = arrayDiFilm.findIndex((film) => parseInt(film.Year) === annoParam)
+  return ritorno
+}
+
+// console.log(indexOfFilm(movies, 2015))
+
+// //Voglio ottenere Avengers Age of Ultron
+// console.log(movies[indexOfFilm(movies, 2015)])
