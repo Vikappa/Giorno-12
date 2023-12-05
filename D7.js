@@ -4,7 +4,7 @@
 */
 
 const concatStrings = function (stringaA, stringaB) {
-  console.log(stringaA.slice(0, 2) + " " + stringaB.slice(stringaB.length - 3, stringaB.length))
+  console.log((stringaA.slice(0, 2) + stringaB.slice(stringaB.length - 3, stringaB.length)).toUpperCase())
 }
 
 //concatStrings("Banana", "Mela")
@@ -20,19 +20,19 @@ const dieciRandom = function () {
   }
   return ritorno
 }
-
-console.log(dieciRandom())
+const testArray = dieciRandom()
+//console.log(testArray)
 
 /* ESERCIZIO 3 (filter)
   Scrivi una funzione per ricavare solamente i valori PARI da un array composto da soli valori numerici
 */
 
 const estrazionePari = function (arrayNumeri) {
-  const ritorno = arrayNumeri.filter((numeroIterato) => numeroIterato % 2 === 0)
+  const ritorno = arrayNumeri.filter((numeroIterato) => numeroIterato % 2 === 0) // Un ritorno per ogni elemento dell'array, ritorna numeroIterato (aka arrayNumeri[i]) SE => numeroIerato è pari
   return ritorno
 }
 
-//console.log(estrazionePari(dieciRandom()))
+//console.log(estrazionePari(testArray))
 
 /* ESERCIZIO 4 (forEach)
   Scrivi una funzione per sommare i numeri contenuti in un array
@@ -46,20 +46,44 @@ const sommaArray = function (arrayDaSommare) {
   return ritorno
 }
 
-console.log(sommaArray(dieciRandom()))
+//console.log(sommaArray(testArray))
 
 /* ESERCIZIO 5 (reduce)
   Scrivi una funzione per sommare i numeri contenuti in un array
 */
 
+const sommaConReduce = function (arrayDaSommare) {
+  const ritorno = arrayDaSommare.reduce((accumuloFinora, numeroIterato) => { return accumuloFinora + numeroIterato }, 0) // Che fatica! Lo 0 alla fine è il valore iniziale da cui partirà accumuloFinora, nel primo argomento ci vanno due argomenti
+  // Il primo argomento è il nome che darò dentro l'esecuzione della funzione all'accumulo, il secondo nome è il nome che darò nell'esecuzione al valore dell'array che sto scorrendo (primo argomento)
+  // Il nel secondo argomento ci andrà l'esecuzione e il ritorno, un ritorno per ogni elemento dell'array su cui usiamo il reduce
+  return ritorno
+}
+
+// console.log(sommaConReduce(testArray))
+
 /* ESERCIZIO 6 (map)
   Scrivi una funzione che, dato un array di soli numeri e un numero n come parametri, ritorni un secondo array con tutti i valori del precedente incrementati di n
 */
+
+const incrementoConMap = function (arrayDaModificare, n) {
+  const ritorno = arrayDaModificare.map(numeroIterato => numeroIterato += n)
+  return ritorno
+}
+
+// console.log(incrementoConMap(testArray, 2))
 
 /* ESERCIZIO 7 (map)
   Scrivi una funzione che, dato un array di stringhe, ritorni un nuovo array contenente le lunghezze delle rispettive stringhe dell'array di partenza
   es.: ["EPICODE", "is", "great"] => [7, 2, 5]
 */
+
+
+const contaLettere = function (arrayStringhe) {
+  const ritorno = arrayStringhe.map(stringaIterata => stringaIterata.length)
+  return ritorno
+}
+//const arrayStringhe = ["EPICODE", "is", "great"]
+//console.log(contaLettere(arrayStringhe))
 
 /* ESERCIZIO 8 (forEach o for)
   Scrivi una funzione per creare un array contenente tutti i valori DISPARI da 1 a 99.
