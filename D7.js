@@ -77,17 +77,27 @@ const incrementoConMap = function (arrayDaModificare, n) {
   es.: ["EPICODE", "is", "great"] => [7, 2, 5]
 */
 
-
 const contaLettere = function (arrayStringhe) {
   const ritorno = arrayStringhe.map(stringaIterata => stringaIterata.length)
   return ritorno
 }
+
 //const arrayStringhe = ["EPICODE", "is", "great"]
 //console.log(contaLettere(arrayStringhe))
 
 /* ESERCIZIO 8 (forEach o for)
   Scrivi una funzione per creare un array contenente tutti i valori DISPARI da 1 a 99.
 */
+const estrazioneDispari = function () {
+  let arrayNumeri = []
+  for (let i = 0; i < 100; i++) {
+    arrayNumeri.push(i)
+  }
+  const ritorno = arrayNumeri.filter((numeroIterato) => numeroIterato % 2 !== 0) // Un ritorno per ogni elemento dell'array, ritorna numeroIterato (aka arrayNumeri[i]) SE => numeroIerato è dispari
+  return ritorno
+}
+
+//console.log(estrazioneDispari())
 
 /* Questo array di film verrà usato negli esercizi a seguire. Non modificarlo e scorri oltre per riprendere gli esercizi :) */
 const movies = [
@@ -209,17 +219,55 @@ const movies = [
   Scrivi una funzione per trovare il film più vecchio nell'array fornito.
 */
 
+const findOldest = function (arrayDiFilm) {
+  let foundOldest = false
+  let foundIndex = 0
+  while (!foundOldest) {
+    foundOldest = true
+    for (let i = 0; i < arrayDiFilm.length; i++) {
+      if (arrayDiFilm[0].year > arrayDiFilm[i].year) {
+        foundIndex = i
+        foundOldest = false
+      }
+    }
+  }
+  return arrayDiFilm[foundIndex]
+}
+
+//console.log(findOldest(movies))
+
+
 /* ESERCIZIO 10
   Scrivi una funzione per ottenere il numero di film contenuti nell'array fornito.
 */
 
+const numeroFilm = function (arrayFilms) {
+  return arrayFilms.length
+}
+
+//console.log(numeroFilm(movies))
+
 /* ESERCIZIO 11 (map)
   Scrivi una funzione per creare un array con solamente i titoli dei film contenuti nell'array fornito.
 */
+const titoliFilm = function (arrayFilms) {
+  return arrayFilms.map(filmIterato => filmIterato.Title)
+}
+
+//console.log(titoliFilm(movies))
+
 
 /* ESERCIZIO 12 (filter)
   Scrivi una funzione per ottenere dall'array fornito solamente i film usciti nel millennio corrente.
 */
+const film2k = function (arrayFilms) {
+  const ritorno = arrayFilms.filter((filmIterato) => parseInt(filmIterato.year) > 1999)
+  return ritorno
+}
+
+console.log(movies)
+
+console.log(film2k(movies))
 
 /* ESERCIZIO 13 (reduce)
   Scrivi una funzione per calcolare la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array fornito.
